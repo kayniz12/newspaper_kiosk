@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #botones{
+            display:flex;
+            justify-content: center;
+
+        }
+    </style>
+</head>
+<body>
+    <iframe id="frame" src="https://www.abc.com.py/" style="height:500px; width:1500px;" title="Pag abc"></iframe>
+    <div id="botones">
+    <button id="backButton">Back</button>
+    <button id="nextButton">Next</button>
+    <button id="moreButton"> Add</button>
+</div>
+
+
+
+  <script> 
+    contentFrame = document.getElementById("frame");
+    backButton = document.getElementById("backButton");
+    nextButton = document.getElementById("nextButton");
+    moreButton =document.getElementById("moreButton");
+
+    pageUrls = [
+      "https://www.abc.com.py/",
+      "https://www.lanacion.com.py/",
+      "https://elpais.com/america/"
+      
+    ];
+
+    currentPageIndex = 0;
+
+    moreButton.addEventListener("click",function(){
+    url = prompt("Please enter the new url for the newspaper");
+    if (url == null || url == "") {
+    text = "Por favor ingrese un url";
+} else {
+  pageUrls.push(url);
+}
+    });
+    
+    backButton.addEventListener("click", function() {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                contentFrame.src = pageUrls[currentPageIndex];
+            }else{
+                currentPageIndex=pageUrls.length-1
+                conentFrame.src=pageUrls[currentPageIndex];
+            }
+        });
+
+        nextButton.addEventListener("click", function() {
+            if (currentPageIndex < pageUrls.length - 1) {
+                currentPageIndex++;
+            } else {
+                currentPageIndex = 0;
+            }
+            contentFrame.src = pageUrls[currentPageIndex];
+        });
+    
+  </script>
+</body>
+
+</html>
